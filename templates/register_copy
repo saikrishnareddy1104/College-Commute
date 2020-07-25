@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <style>
+
+     #form1{   
+        margin-left: 59%;
+        margin-top: 50px;
+     }
+
+     #form2{
+        
+         margin-left: 550px;
+     }
+    h3{
+
+    margin-top: 30px;
+    margin-left: 550px;
+    }
+    #btn1{
+        margin-left: 50px;
+        margin-top: 30px;
+    }
+    </style>
+    <title>Signup</title>
+</head>
+<body>
+    <script src="{% static '/js/jquery.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    {% block content %}
+
+    <a href="/"><button id="btn1" class="btn btn-info btn-lg">Back</button></a>
+  <div class="row container">
+    <form action="register" method="POST">
+        {%csrf_token %}
+        <div id="form1" class="form-group col-md-6">
+          <label >FirstName:</label>
+          <input type="text" class="form-control" style="width:350px;" name="firstname" autofocus required>
+        </div>
+        <div id="form2" class="form-group col-md-6">
+          <label>LastName</label>
+          <input type="text" class="form-control" style="width:350px;" name="lastname" required>
+        </div>
+        
+        <div id="form2" class="form-group col-md-6">
+            <label>MECID</label>
+            <input type="text" class="form-control" style="width:350px;" name="username" pattern="[1][6-9][X][J][1][A][0][1|2|3|5][0-8][0-9]"required>
+            <p style="color:darkmagenta">Format example: 17XJ1A0548</p>
+          </div>
+        
+          <div id="form2" class="form-group col-md-6">
+            <label>email</label>
+            <input type="email" class="form-control" style="width:350px;" name="email" required>
+        </div>
+          
+        <div id="form2" class="form-group col-md-6">
+            <label>Password</label>
+            <input type="password" class="form-control col-md6" style="width:350px;" name="password1" required>
+          </div>
+        
+          <div id="form2" class="form-group col-md-6">
+            <label>ReEnter Password</label>
+            <input type="password" class="form-control" style="width:350px;" name="password2" required>
+          </div>
+          
+                
+        <div id="form2" class="form-group col-md-6">
+          <button  type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        
+        </div>
+        {%for message in messages%}
+
+           <h3>{{message}}</h3>
+        {%  endfor %}
+
+    </form>
+    {%endblock%} 
+
+
+
+</body>
+</html>

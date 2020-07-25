@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <title>collegecommute</title>
+    <style>
+            
+      body, html {
+        height: 100%;
+        margin: 0;
+      }
+      
+      .bg {
+        /* The image used */
+      
+      
+        /* Full height */
+        height: 100%; 
+      
+        /* Center and scale the image nicely */
+        background-position: center;
+        
+        background-size: cover;
+      }
+
+      
+      .container{
+        background-size: cover;
+      }
+      
+      .margin{
+        margin-left: 5%;
+        margin-top: 2%;
+      }
+      
+      </style>
+    
+            
+
+</head>
+<body >
+  <script src="{% static '/js/jquery.js' %}"></script>
+  <script src="{% static '/js/bootstrap.min.js' %}"></script>
+  
+  <div class="bg container-fluid" style="background-image:url({% static 'images/travel.png' %}); background-repeat: no-repeat">
+    
+    <div class="row"> 
+      
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+        <div class="d-flex justify-content-sm-center margin">
+            <h1><u>College Commute</u></h1>
+
+        </div>    
+      </div> 
+     
+
+    </div> 
+
+    {% if user.is_authenticated %}
+    
+    <div class="row mt-5"> 
+      
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+        <div class="d-flex justify-content-sm-center">
+          <h2>Hello,{{user.first_name}}</h2>
+          <a href="account/lookride"><button class="btn btn-success btn-lg ml-5">Join ride</button></a>
+          <a href="account/offride"><button class="btn btn-success btn-lg ml-5" >offer a ride</button></a>
+          <a href="account/yourrides"><button class="btn btn-success btn-lg ml-5" >offered Rides</button></a></li>
+          <a href="account/logout"><button class="btn btn-success btn-lg ml-5">logout</button></a>
+         </div>    
+      </div> 
+     
+    </div> 
+
+
+
+
+
+
+
+
+    {%else%}
+    <div class="row mt-5"> 
+      
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 ">
+            <div class="d-flex justify-content-sm-center">
+                 <a href="account/register"><button class="btn btn-primary btn-lg homenav">signup</button></a>
+                 <a href="account/login"><button class ="btn btn-primary btn-lg homenav" style="margin-left: 60%;">login</button></a>
+
+             </div>    
+          </div> 
+         
+    </div> 
+  
+  
+    {%endif%}
+
+  </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,85 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <title>looking for ride</title>
+
+
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+      .tabledata{
+        text-align: center;
+      }
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;
+        }
+        </style>
+
+</head>
+<body>
+<script src="{% static '/js/jquery.js' %}"></script>
+<script src="{% static '/js/bootstrap.min.js' %}"></script>
+<div class="container-fluid" style="margin-top: 2%;">
+  <div class="row">
+     <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-sm-start">
+         <a href="/"><button id="btn1" class="btn btn-info btn-md ">Back</button></a>
+      </div>
+  </div>
+
+
+{% for k in ride|slice:":1" %}
+    <h2 style="font-style:Arvo;margin-top:1%;color:indigo"><u>Upcoming Rides</u> </h2>
+    {% empty %}
+    <h2 style="font-style:Arvo;margin-top:1%;color:red">Currently there are no upcoming Rides. </h2>
+    {% endfor %}
+
+<div style="margin-top: 1.5%;" class="table-responsive">
+<table style="width:100%" class="table-hover">
+  
+{% for j in ride|slice:":1" %}
+    <tr>
+      <th class="tabledata">MecId</th>
+      <th class="tabledata">startingpoint</th>
+      <th class="tabledata">destination</th>
+      <th class="tabledata">date and time </th> 
+      <th class="tabledata">vacancy</th>
+      <th class="tabledata">phonenumber</th>
+      <th class="tabledata">Join/Cancel</th>
+    </tr>
+    
+{%endfor%}
+     
+  
+  {% for i in ride %}
+  <tr>
+    <td class="tabledata"><a href="userprofile/{{i.userid}}">{{i.userid}}</a></td>
+    <td class="tabledata">{{i.startingpoint}}</td>
+    <td class="tabledata">{{i.destination}}</td>
+    <td class="tabledata">{{i.datetime}}</td>
+    <td class="tabledata">{{i.vacancy}}</td>
+    <td class="tabledata">{{i.phonenumb}}</td>
+   {% if i.passenger1 == request.user.username or i.passenger2 == request.user.username or i.passenger3 == request.user.username or i.passenger4 == request.user.username or i.passenger5 == request.user.username or i.passenger6 == request.user.username %}
+    <td class="tabledata"><a href="cancelride/{{i.id}}"><button class="btn btn-danger">cancel</button></a></td>
+   {%else%}  
+    <td class="tabledata"><a href="joinride/{{i.id}}"><button class="btn btn-primary">join</button></a></td>
+   {%endif%}  
+  </tr>
+  
+  
+  {% endfor %}
+</table>
+
+</div>
+
+</body>
+</html>

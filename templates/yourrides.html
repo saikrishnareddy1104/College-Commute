@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    
+    <title>offered rides</title>
+
+
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+        .tabledata{
+          text-align: center;
+        }
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;
+        }
+        </style>
+
+</head>
+<body>
+  <script src="{% static '/js/jquery.js' %}"></script>
+  <script src="{% static '/js/bootstrap.min.js' %}"></script>
+  <div class="container-fluid" style="margin-top: 2%;">
+    <div class="row">
+       <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex justify-content-sm-start">
+           <a href="/"><button id="btn1" class="btn btn-info btn-md ">Back</button></a>
+        </div>
+    </div>
+    
+    
+    {% for k in ride|slice:":1" %}
+    <h2 style="font-style:Arvo;margin-top:1%;color:indigo"><u>Offered Rides</u> </h2>
+    {% empty %}
+    <h2 style="font-style:Arvo;margin-top:1%;color:red">Currently there are no Rides offered. </h2>
+    {% endfor %}
+  
+
+
+<div style="margin-top: 1.5%;" class="table-responsive">
+ <table style="width:100%" class="table-hover">
+  {% for j in ride|slice:":1" %}
+    <tr class="info">
+      <th class="tabledata">starting point</th>
+      <th class="tabledata">destination</th>
+      <th class="tabledata">dateand time</th>
+      <th class="tabledata">vacancy</th> 
+      <th class="tabledata">passengers Joined</th>
+      <th class="tabledata">delete your ride</th>
+    </tr>
+    
+  {%endfor%}
+
+  {% for i in ride %}
+    <tr>
+     <td class="tabledata">{{i.startingpoint}}</td>
+     <td class="tabledata">{{i.destination}}</td>
+     <td class="tabledata">{{i.datetime}}</td>
+     <td class="tabledata">{{i.vacancy}}</td>
+     <td class="tabledata" >
+      {% if i.passenger1  %}
+        <a href="userprofile/{{i.passenger1}}">{{i.passenger1}}</a>,
+      {% endif %}
+
+      {% if i.passenger2 %}
+        <a href="userprofile/{{i.passenger2}}">{{i.passenger2}}</a>,
+      {% endif %}
+
+      {% if i.passenger3 %}
+        <a href="userprofile/{{i.passenger3}}">{{i.passenger3}}</a>,
+      {% endif %}
+
+      {% if i.passenger4 %}
+        <a href="userprofile/{{i.passenger4}}">{{i.passenger4}}</a>,
+      {% endif %}
+      {% if i.passenger5 %}
+        <a href="userprofile/{{i.passenger5}}">{{i.passenger5}}</a>,
+      {% endif %}
+      {% if i.passenger6 %}
+        <a href="userprofile/{{i.passenger6}}">{{i.passenger6}}</a>
+      {% endif %}
+      {% if i.passenger1 == None and  i.passenger2 == None and i.passenger3 == None and i.passenger4 == None and i.passenger5 == None and i.passenger6 == None %}
+         None
+      {% endif %}  
+        </td>
+    <td class="tabledata"><a href="deleteride/{{i.id}}"><button class="btn btn-danger">delete</button></a></td>
+    </tr>
+  {%endfor%} 
+  
+</table>
+      
+</div>
+
+</body>
+</html>

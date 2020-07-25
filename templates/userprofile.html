@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 5px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    {% for i in user %}
+    <h1 style="color: indigo;"><u>Passenger Profile</u></h1>
+    <div style="margin-top: 2%;">
+      <table width="45%">
+        <tr>
+          <td>Username</td>
+          <td>{{i.username}}</td>
+        </tr>
+        <tr>
+          <td>Firstname</td>
+          <td>{{i.first_name}}</td>
+        </tr>
+        <tr>
+          <td>Lastname</td>
+          <td>{{i.last_name}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{i.email}}</td>
+        </tr>
+      </table>
+    </div>
+    {% endfor %}
+  </body>
+</html>

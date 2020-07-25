@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <style>
+      h3{
+
+        margin-top: 1%;
+        margin-left: 37.5%;
+        }
+     #form1{   
+        margin-top: 7%;
+        margin-left: 37.5%;
+     }
+
+     #form2{
+        
+        margin-left: 37.5%;
+     }
+    
+    #btn1{
+        margin-left: 1%;
+        margin-top: 1%;
+    }
+    </style>
+    <title>Signup</title>
+</head>
+<body>
+       <script src="{% static '/js/jquery.js' %}"></script>
+       <script src="{% static '/js/bootstrap.min.js' %}"></script>
+       {% block content %}
+       <a href="/"><button id="btn1" class="btn btn-info btn-lg ">Back</button></a>
+
+    <div class="container-fluid">
+      <form action="offride" method="POST">
+            {%csrf_token %}
+            <div class="row">
+                <div id="form1"class="form-group col-md-6 col">
+                 <input type="text" placeholder="Enter Startingpoint"  style="width:350px;" class="form-control" name="startingpoint" required autofocus />
+                </div>
+            </div>
+            <div class="row">
+                <div id="form2" class="form-group col-md-6 col">
+                  <input type="text" placeholder="Enter Destination "   style="width:350px;" class="form-control" name="destination" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div id="form2" class="form-group col-md-6 col">
+                   <input type="datetime-local" size="30" name="datetime"  style="width:350px;"  class="form-control" required/>
+                </div>
+            </div>
+
+           <div class="row">
+             <div id="form2" class="form-group col-md-6 col">
+               <input type="number" size="30" placeholder="vacancy" name="vacancy" min="1" max="6"  style="width:350px;" class="form-control" required/>
+             </div>
+           </div>
+
+          <div class="row">  
+            <div id="form2" class="form-group col-md-6 col">
+              <input type="tel" size="30" placeholder="enter 10 digit phone number"   style="width:350px;" name="phonenumber" pattern="[1-9]{1}[0-9]{9}" class="form-control" required/>
+            </div>
+          </div>
+
+          <div class="row">
+             <div id="form2" class="form-group col-md-6 col">
+               <button type="submit" class="btn btn-primary">Submit</button>
+             </div>
+          </div>
+          
+        {%for message in messages%}
+     
+        <h3 style="color: red;">{{message}}</h3>
+        {%  endfor %}
+
+
+    </div>
+
+    </form>
+    {%endblock%} 
+
+
+
+</body>
+</html>

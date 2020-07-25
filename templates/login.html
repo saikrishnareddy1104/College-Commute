@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+</head>
+<style>
+    form{
+
+        margin-left: 550px;
+        margin-top: 50px;
+     }
+ h1{
+ color: darkblue;
+     margin-left: 520px;
+     margin-top: 50px;
+ }
+ 
+ button {
+     background-color: black;
+     border: none;
+     color: white;
+     padding: 10px 25px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     margin-left: 10px;
+     
+   }
+   button:hover {
+       box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+     }
+
+</style>
+<body>
+    <a href="/"><button>back</button></a>
+    <h1>Enter login credentials</h1>
+    <form action="login" method="POST">
+        {%csrf_token %}
+    <input type="text" size="30"placeholder="mecid" name="username" required><br><br>
+    <input type="password" size="30"placeholder="password" name="password" required><br><br>
+    <input type="submit">
+{%for message in messages%}
+
+<h3>{{message}}</h3>
+{%  endfor %}
+</body>
+</html>
